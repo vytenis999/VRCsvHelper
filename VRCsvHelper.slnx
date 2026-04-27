@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="VRCsvHelper.UnitTests/VRCsvHelper.UnitTests.csproj" Id="dfebe3da-f2ae-4a4e-9cbf-97a03bb25910" />
+  <Project Path="VRCsvHelper/VRCsvHelper.csproj" />
+</Solution>

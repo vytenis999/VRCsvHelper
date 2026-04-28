@@ -60,10 +60,8 @@ public class CsvReader<T>(CsvConfiguration? configuration = null, ILineParser? p
                     columnMap = BuildMapFromHeaders(fields, properties);
                     continue;
                 }
-                else
-                {
-                    columnMap = BuildMapFromOrder(properties, fields.Count);
-                }
+
+                columnMap = BuildMapFromOrder(properties, fields.Count);
             }
 
             results.Add(MapRow(fields, columnMap, lineNumber));

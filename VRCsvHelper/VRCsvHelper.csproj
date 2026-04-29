@@ -17,11 +17,4 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
-	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-		<ItemGroup>
-			<_CustomFiles Include="$(MSBuildProjectDirectory)/../commit-msg" />
-		</ItemGroup>
-		<Copy SourceFiles="@(_CustomFiles)" DestinationFolder="$(MSBuildProjectDirectory)/../.git/hooks" />
-	</Target>
-
 </Project>

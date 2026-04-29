@@ -8,12 +8,20 @@
     <!-- NuGet package metadata -->
     <PackageId>VRCsvHelper</PackageId>
     <Version>1.0.0</Version>
-    <Authors>vytenis999</Authors>
+    <Authors>Vytenis Rope</Authors>
+    <Company>Vytenis Rope</Company>
     <Description>A simple, reusable CSV import/export library for .NET.</Description>
     <PackageTags>csv;import;export;parser</PackageTags>
     <RepositoryUrl>https://github.com/vytenis999/VRCsvHelper</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
+
+	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+		<ItemGroup>
+			<_CustomFiles Include="$(MSBuildProjectDirectory)/../commit-msg" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_CustomFiles)" DestinationFolder="$(MSBuildProjectDirectory)/../.git/hooks" />
+	</Target>
 
 </Project>

@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+env:
+  PROJECT_PATH: "VRCsvHelper/VRCsvHelper.csproj"
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 10.0.x
+      - name: Semantic Release Setup
+        id: release-setup
+        run: echo '{"branches":["master"],"plugins":["@semantic-release/commit-analyzer","@semantic-release/release-notes-generator","@semantic-release/github"]}' > .releaserc.json
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: "Pack & Publish project"
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          dotnet clean
+          dotnet pack --configuration Release
+          dotnet nuget push ${{ github.workspace }}/VRCsvHelper/bin/Release/*.nupkg --source https://nuget.pkg.github.com/vytenis999/index.json -k ${{ secrets.GH_TOKEN }}

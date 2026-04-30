@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/UnitTests/">
+    <Project Path="UnitTests/VRCsvHelper.UnitTests/VRCsvHelper.UnitTests.csproj" />
     <Project Path="UnitTests/VRCsvHelper.AIGenerated.UnitTests/VRCsvHelper.AIGenerated.UnitTests.csproj" />
   </Folder>
   <Project Path="VRCsvHelper.Example/VRCsvHelper.Example.csproj" />

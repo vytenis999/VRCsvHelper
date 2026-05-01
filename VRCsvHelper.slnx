@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/UnitTests/">
     <Project Path="UnitTests/VRCsvHelper.UnitTests/VRCsvHelper.UnitTests.csproj" />
     <Project Path="UnitTests/VRCsvHelper.AIGenerated.UnitTests/VRCsvHelper.AIGenerated.UnitTests.csproj" />
